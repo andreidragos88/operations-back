@@ -2,11 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
+const io = require('./socket/init');
 const { logger } = require('./utils/logger');
 const { dbConfig } = require('./config/db');
 
 const app = express();
 const server = http.Server(app);
+
+io.init(server);
+
+const ioListeners = require('./socket/listeners');
+
+ioListeners.init();
 
 mongoose
   .connect(
