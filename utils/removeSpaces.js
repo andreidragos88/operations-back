@@ -1,0 +1,1 @@
+exports.removeSpaces = (input) => input.replace(/\s/g, '');
